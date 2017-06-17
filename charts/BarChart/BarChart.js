@@ -1,26 +1,23 @@
-import React, { Component, PropTypes } from 'react'
-import { Motion, spring } from 'react-motion'
+import React, {Component, PropTypes} from 'react'
+import {Motion, spring} from 'react-motion'
 import Bars from './Bars'
 import Grid from './Grid'
 import AxisX from './AxisX'
 import AxisY from './AxisY'
 
 class BarChart extends Component {
-
-  // @todo upload to github with MIT license
-
   static propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     topPadding: PropTypes.number,
     bottomPadding: PropTypes.number,
     id: PropTypes.string.isRequired,
-    values: PropTypes.arrayOf(PropTypes.object)
+    values: PropTypes.arrayOf(PropTypes.object),
   }
 
   static defaultProps = {
-    width: 900, // 650,
-    height: 450, // 250,
+    width: 900,
+    height: 450,
     topPadding: 30,
     bottomPadding: 50,
     title: 'test',
@@ -39,16 +36,13 @@ class BarChart extends Component {
       {xValue: 4, yValue: 1},
       {xValue: 5, yValue: 1},
       {xValue: 6, yValue: 1},
-      {xValue: 7, yValue: 1}
+      {xValue: 7, yValue: 1},
     ],
-
   }
 
-  componentWillMount () {
-
+  componentWillMount() {
     // set initial chart axes, height, width and unit spacing
-
-    const { values, width, height, topPadding, bottomPadding, yAxisRounding } = this.props
+    const {values, width, height, topPadding, bottomPadding, yAxisRounding} = this.props
 
     this.chartHeight = height - topPadding - bottomPadding
     this.chartWidth = width - 100
@@ -61,8 +55,8 @@ class BarChart extends Component {
       if (min > v.yValue) min = v.yValue
     })
 
-    let yMin = Math.floor(min/yAxisRounding)*yAxisRounding
-    let yMax = Math.ceil(max/yAxisRounding)*yAxisRounding
+    let yMin = Math.floor(min / yAxisRounding) * yAxisRounding
+    let yMax = Math.ceil(max / yAxisRounding) * yAxisRounding
 
     let i = yMax
     let yAxis = []
@@ -74,14 +68,15 @@ class BarChart extends Component {
 
     this.yAxis = yAxis
 
-    this.xSpacing = this.chartWidth/values.length
-    this.ySpacing = this.chartHeight/this.yAxis.length
-
+    this.xSpacing = this.chartWidth / values.length
+    this.ySpacing = this.chartHeight / this.yAxis.length
   }
 
-  render () {
-
-    const { width, height, id, topPadding, bottomPadding, values, xUnit, yUnit, title, xTitle, yTitle, xModulus, yModulus } = this.props
+  render() {
+    const {
+      width, height, id, topPadding, bottomPadding, values, xUnit,
+       yUnit, title, xTitle, yTitle, xModulus, yModulus,
+     } = this.props
 
     if (!values) return null
 

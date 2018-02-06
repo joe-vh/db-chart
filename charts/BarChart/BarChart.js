@@ -41,7 +41,6 @@ class BarChart extends Component {
   }
 
   componentWillMount() {
-    // set initial chart axes, height, width and unit spacing
     const {values, width, height, topPadding, bottomPadding, yAxisRounding} = this.props
 
     this.chartHeight = height - topPadding - bottomPadding
